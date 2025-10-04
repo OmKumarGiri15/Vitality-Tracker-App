@@ -682,6 +682,14 @@ table tr:nth-child(odd) {
         flex: 1 1 100%; /* Take up the full width */
         min-width: unset; /* Remove minimum width constraint */
         height: 350px; /* Slightly shorter height for mobile viewing */
+        position: relative;
+    }
+
+     /* Ensure the canvas element inside the box fills its constrained height */
+    .chart-box canvas {
+        width: 100% !important;
+        height: 100% !important; 
+        /* The !important often helps override Chart.js's internal styling if needed */
     }
 
     /* 2. TABLE LAYOUT: Reduce padding and wrap text */
