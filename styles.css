@@ -1,0 +1,666 @@
+/* styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #0f172a;
+    color: white;
+}
+
+h1 {
+    background-image: linear-gradient(to right, #0ea5e9, #10b981);
+}
+
+h3 {
+    background-image: linear-gradient(to right, #ec4899, #8b5cf6);
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    background-image: linear-gradient(to right, #0ea5e9, #10b981); 
+    
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    line-height: 1.1; 
+    padding-top: 5px; 
+    padding-bottom: 5px; 
+
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    gap: 15px;
+    
+    margin-top: 25px;
+    margin-bottom: 5px;
+
+    /* --- ENHANCEMENT FOR FLOATING EFFECT --- */
+    /* text-shadow: H-Offset V-Offset Blur Color; */
+    text-shadow: 
+        1px 1px 2px rgba(0, 0, 0, 0.4), /* Subtle dark shadow for depth */
+        0 0 10px rgba(255, 255, 255, 0.1); /* Subtle light glow for lift */
+}
+h1 i {
+    font-size: 3rem; 
+    line-height: 1; 
+    vertical-align: middle; 
+    display: inline-block;
+    transform: translateY(-2px); 
+
+    /* Apply the same shadow to the icon for consistency */
+    text-shadow: inherit; 
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #94a3b8;
+    background-image: none;
+    -webkit-text-fill-color: #94a3b8;
+    
+    /* 🛑 THE FIX IS HERE 🛑 */
+    width: 100%; /* Ensure it spans the full width of the app container */
+    text-align: center; /* Center the text within the full width */
+    
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 650px;
+    margin: 1rem auto;
+    padding: 10px;
+    gap: 20px;
+}
+
+.inputs {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    height: fit-content;
+}
+
+.inputs>div {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-size: 0.9rem;
+}
+
+input,
+label {
+    display: block;
+}
+
+input {
+    margin-top: 8px;
+    margin-bottom: 5px;
+    padding: 10px;
+    font-size: large;
+    background-color: #262626;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    align-items: center;
+}
+
+input:focus-visible {
+    outline: 2px solid #ec4899;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button{ display: block; cursor: pointer; border: none; }
+
+#submit {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-image: linear-gradient(to right, #ec4899, #8b5cf6);
+    font-size: 1.3rem;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    transition: scale 0.3s ease-in-out;
+}
+
+#editSection{
+    width: 100%;
+    display: flex;
+    gap: 25px;
+    justify-content: space-between;
+}
+
+#editSection > button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    transition: scale 0.3s ease-in-out;
+}
+
+#updateEntry { background-image: 
+      linear-gradient(to right, #ec4899, #8b5cf6); }
+
+#cancelEdit{ background-color: #ef4444; }
+
+#submit:hover, #updateEntry:hover, #cancelEdit:hover { scale: 1.02; }
+
+.hidden{ display: none !important; }
+
+/* =================================================================
+   TABLE AND DATA STYLING
+   ================================================================= */
+
+/* Ensure text and content within the cells are horizontally and vertically centered */
+table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px 5px; /* Increase vertical padding, reduce horizontal padding */
+}
+
+/* Ensure the column containing the buttons is narrow and centered */
+table th:nth-child(5),
+table td:nth-child(5) {
+    width: 60px; /* Adjust this width to make the column narrower */
+}
+table th:nth-child(6),
+table td:nth-child(6) {
+    width: 60px; /* Adjust this width to make the column narrower */
+}
+
+/* ----------------------------------------------------
+   BUTTON STYLING (Edit/Delete)
+   ---------------------------------------------------- */
+
+.edit-btn, .delete-btn {
+    /* Base button styles */
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 5px 8px; /* Reduce padding to make buttons smaller */
+    margin: 0 2px; /* Add small margin between buttons */
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    display: inline-block; /* Essential for aligning them side-by-side */
+}
+
+/* Edit Button Aesthetics */
+.edit-btn {
+    color: #4ade80; /* A soft green color */
+}
+
+.edit-btn:hover {
+    background-color: rgba(74, 222, 128, 0.1); /* Light green hover background */
+}
+
+/* Delete Button Aesthetics */
+.delete-btn {
+    color: #f87171; /* A soft red color */
+}
+
+.delete-btn:hover {
+    background-color: rgba(248, 113, 113, 0.1); /* Light red hover background */
+}
+
+/* ----------------------------------------------------
+   ICON STYLING (Fixes the unrendered box issue if the font loads)
+   ---------------------------------------------------- */
+
+/* Ensures the icon itself is a legible size and correctly aligned */
+.edit-btn i, .delete-btn i {
+    font-size: 1.1rem; /* Make icons slightly larger than default text */
+    vertical-align: middle;
+    line-height: 1; /* Essential for accurate vertical alignment */
+}
+
+/* Update the table cells to use flexbox for precise alignment */
+table td:last-child {
+    /* Set the last table data cell (which holds the buttons) 
+       to use flexbox to align children horizontally */
+    display: flex; 
+    justify-content: center; /* Center the icons horizontally within the cell */
+    align-items: center;     /* Center the icons vertically within the cell */
+    padding: 10px 5px;       /* Ensure there is sufficient internal padding */
+    height: 100%;            /* Ensure the cell takes up the full row height */
+}
+
+/* Ensure the buttons themselves are compact and sit well together */
+.edit-btn, .delete-btn {
+    /* Keep these styles as they were in the previous aesthetic fix */
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 7px 10px; /* Compact padding */
+    margin: 0 2px; /* Small gap between the two buttons */
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+/* Ensure the icons are properly sized and aligned */
+.edit-btn i, .delete-btn i {
+    font-size: 1.4rem; 
+    line-height: 1; /* Helps with vertical alignment */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- FIX: TABLE BUTTON ALIGNMENT --- */
+table td {
+    /* Ensures content is aligned vertically and horizontally in the center of the cell */
+    text-align: center;
+    vertical-align: middle; 
+}
+
+/* Ensure the button icons are vertically centered */
+.edit-btn i, 
+.delete-btn i {
+    vertical-align: middle;
+}
+
+th,td
+{
+    text-align: center;
+    padding: 10px;
+    border: 0;
+}
+tr:nth-child(even) {
+    background-color: #57534e;
+}
+
+tr:nth-child(odd) {
+    background-color: #262626;
+}
+
+th {
+    font-size: 0.9rem;
+    background-color: #0a0a0a;
+}
+
+tbody > tr:hover{
+    background-color: #737373;
+    color: black;
+}
+
+.delete-animation{
+    background-color: #ef4444 !important;
+    animation: deleteAnimate 0.4s linear forwards;
+}
+
+@keyframes deleteAnimate{
+    to{
+        transform: translateX(100%);
+    }
+}
+/* styles.css - Add this section */
+
+#summary {
+    width: 100%;
+    margin: 15px 0;
+    padding: 15px;
+    background-color: #1f2937; /* Darker background for contrast */
+    border-radius: 8px;
+    border: 1px solid #374151; /* Subtle border */
+    text-align: center;
+}
+
+#summary h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    /* You can re-apply the gradient text here if you want */
+}
+
+#summary p {
+    font-size: 1rem;
+    color: #9ca3af; /* Light grey text */
+}
+
+#summary strong {
+    color: #10b981; /* Highlight key numbers */
+}
+
+/* Optional: Improve table header for better readability */
+th {
+    font-size: 1rem; /* Slightly larger font */
+    background-color: #0a0a0a;
+    position: sticky; /* Keep header visible when scrolling (if table were long) */
+    top: 0;
+    z-index: 10;
+    padding: 15px 10px; /* More padding */
+}
+/* --- NEW STYLES FOR AUTHENTICATION SECTION --- */
+
+#authContainer {
+    width: 100%; /* Match the width of the main app content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Spacing between elements */
+    padding: 30px;
+    background-color: #1f2937; /* Slightly lighter than body background for subtle depth */
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Subtle lift */
+}
+
+#authContainer h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 5px;
+}
+
+#authEmail,
+#authPassword {
+    /* Inherit the existing aesthetic of the main app inputs */
+    margin-top: 0; /* Override margin from general input styles */
+    margin-bottom: 0;
+    padding: 12px; /* Slightly more padding than other inputs */
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+#authEmail:focus-visible,
+#authPassword:focus-visible {
+    outline: none;
+    border: 2px solid #0ea5e9; /* Use the blue/cyan focus color */
+}
+
+#registerBtn,
+#loginBtn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    border: none;
+    transition: scale 0.2s ease-in-out, box-shadow 0.2s ease;
+}
+
+#registerBtn {
+    /* Use the main Submit button's gradient for the primary action (Register) */
+    background-image: linear-gradient(to right, #ec4899, #8b5cf6);
+}
+
+#loginBtn {
+    /* Use a contrasting gradient/color for the secondary action (Login) */
+    background-image: linear-gradient(to right, #0ea5e9, #10b981);
+    margin-bottom: 10px; /* Space before message */
+}
+
+/* Button Interactivity (Matching the app's submit button) */
+#registerBtn:hover, 
+#loginBtn:hover { 
+    scale: 1.01; 
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.4); 
+}
+
+#registerBtn:active, 
+#loginBtn:active {
+    scale: 0.98; 
+    box-shadow: 0 0 5px rgba(139, 92, 246, 0.8);
+}
+
+#authMessage {
+    font-size: 1rem;
+    font-weight: 600;
+    min-height: 20px; /* Reserve space so the layout doesn't jump */
+}
+
+#logoutBtn {
+    /* Style the Logout button to look like a clean, professional link */
+    padding: 8px 15px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    background-color: #ef4444; /* Use the Cancel/Delete red color */
+    color: white;
+    border-radius: 5px;
+    align-self: flex-end; /* Position it on the top right of the main app */
+}
+
+#logoutBtn:hover {
+    background-color: #dc2626;
+    scale: 1.05;
+}
+
+/* --- NEW: SUMMARY BOX STYLES --- */
+.summary-box {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px 20px;
+    background-color: #1e293b; 
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.summary-box h3 {
+    font-size: 1.2rem;
+    color: #0ea5e9; /* Light blue accent */
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #374151;
+    padding-bottom: 5px;
+    text-align: left; /* Make the summary heading left-aligned */
+}
+
+#OverallAverage{
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+#OverallAverage p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #94a3b8;
+}
+
+#OverallAveragespan {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* --- NEW: FEEDBACK BOX STYLES --- */
+.feedback-box {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px 20px;
+    background-color: #374151; /* Darker background for distinction */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.feedback-box h3 {
+    font-size: 1.2rem;
+    color: #fcd34d; /* Yellow accent for a "coaching" feel */
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #4b5563;
+    padding-bottom: 5px;
+    text-align: left;
+}
+
+#healthFeedback p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding-left: 10px;
+    border-left: 3px solid transparent;
+}
+
+/* Status colors (used by JavaScript) */
+.good-status {
+    color: #10b981; /* Green */
+    border-left-color: #10b981 !important;
+}
+
+.warning-status {
+    color: #f97316; /* Orange */
+    border-left-color: #f97316 !important;
+}
+
+/* =================================================================
+   THEME VARIABLES & LIGHT/DARK MODE
+   ================================================================= */
+
+/* =================================================================
+   THEME VARIABLES & LIGHT/DARK MODE
+   ================================================================= */
+
+:root {
+    /* Dark Mode (Default) Variables */
+    --color-bg-main: #1f2937; /* Should be a dark color */
+    --color-bg-secondary: #374151;
+    --color-text-primary: #f9fafb; /* Should be a light color */
+    --color-text-secondary: #d1d5db;
+}
+
+.light-mode {
+    /* Light Mode Overrides */
+    --color-bg-main: #f3f4f6; /* Very light gray background */
+    --color-bg-secondary: #ffffff; /* White card/input background */
+    --color-text-primary: #1f2937; /* 🛑 THIS MUST BE A DARK COLOR (e.g., Black/Dark Gray) 🛑 */
+    --color-text-secondary: #4b5563; 
+}
+
+/* ----------------------------------------------------
+   APPLYING VARIABLES TO EXISTING STYLES (CRITICAL SECTION)
+   ---------------------------------------------------- */
+
+body {
+    /* Ensure the body is using the variables */
+    background-color: var(--color-bg-main); 
+    color: var(--color-text-primary);       
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Ensure the main content containers switch too */
+.auth-container, .summary-box, .feedback-box, .data-entry-form {
+    background-color: var(--color-bg-secondary); 
+    color: var(--color-text-primary); /* Ensures text is visible inside containers */
+}
+
+/* Ensure the text color of the table cells is correct */
+table, table th, table td {
+    color: var(--color-text-primary); 
+    /* The row backgrounds will be handled by the tr:nth-child rules */
+}
+
+/* Update your input fields */
+input {
+    background-color: var(--color-bg-main); /* Use main background for contrasting inputs */
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-text-secondary);
+}
+
+/* Update table rows for contrast */
+table tr:nth-child(even) {
+    background-color: var(--color-bg-secondary);
+}
+table tr:nth-child(odd) {
+    background-color: var(--color-bg-main);
+}
+
+
+/* --- THEME TOGGLE BUTTON STYLING --- */
+#themeToggle {
+    background: transparent;
+    color: var(--color-text-secondary);
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 5px;
+    margin-right: 15px; /* Adjust spacing */
+}
+#themeToggle:hover {
+    color: var(--color-text-primary);
+}
+
+/* =================================================================
+   CHART DASHBOARD STYLING
+   ================================================================= */
+
+.dashboard-section {
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    background-color: var(--color-bg-secondary);
+}
+
+.dashboard-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--color-text-primary);
+}
+
+/* =================================================================
+   CHART DASHBOARD STYLING
+   ================================================================= */
+
+/* Keep the charts side-by-side but with some constraints */
+.charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.chart-box {
+    flex: 1 1 45%; 
+    min-width: 300px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: var(--color-table-accent);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    /* 🛑 CRITICAL FIX: Define a consistent, manageable height for all charts 🛑 */
+    height: 400px; /* Adjust this value (e.g., 350px - 450px) until it looks right */
+    position: relative; /* Needed for the canvas to correctly take 100% height */
+}
+
+/* Ensure the canvas element fills its constrained container */
+.chart-box canvas {
+    /* Chart.js needs these to be truly responsive inside a constrained container */
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.chart-box h3 {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--color-text-secondary);
+}

@@ -1,0 +1,191 @@
+<!-- index.html -->
+ <!-- <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+<script>
+        var app;
+        var auth;
+        var db; 
+
+        // 🛑 ENSURE YOUR REAL KEYS ARE HERE 🛑
+        const firebaseConfig = {
+            apiKey: "AIzaSyCoGTWj2ldZKN8EvzKXdlEjOlx-CJxgkvo",
+            authDomain: "vitality-tracker-23ce6.firebaseapp.com",
+            projectId: "vitality-tracker-23ce6",
+            storageBucket: "vitality-tracker-23ce6.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        
+        // These lines define the global variables used in script.js
+        app = firebase.initializeApp(firebaseConfig);
+        auth = app.auth();     
+        db = app.firestore();  
+    </script>
+     -->
+    <!-- <script src="script.js" defer></script>
+</body> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        GeeksforGeeks | Create a Health 
+          Tracker using HTML CSS & JavaScript
+    </title>
+    <!-- Font Awesome CSS CDN -->
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app">
+        <div id="authContainer">
+            <h2>Sign Up or Log In</h2>
+            <input id="authEmail" type="email" placeholder="Email">
+            <input id="authPassword" type="password" placeholder="Password">
+            <button id="registerBtn">Register</button>
+            <button id="loginBtn">Log In</button>
+            <p id="authMessage"></p>
+        </div>
+        
+        <div id="mainApp" class="hidden">
+            <button id="logoutBtn">Log Out</button>
+        <h1> 
+            <i class="fas fa-chart-line"></i>
+             Vitality Tracker</h1>
+        <h3>Daily Health Metrics</h3>
+        <div class="inputs">
+            <div>
+                <label for="water">
+                      Water Intake (in ml)
+                  </label>
+                <input id="water" type="number">
+            </div>
+            <div>
+                <label for="exercise">
+                      Exercise Duration (in min)
+                  </label>
+                <input id="exercise" type="number">
+            </div>
+            <div>
+                <label for="bloodsugerlevel">
+                      Blood Sugar Level (in mg/dL)
+                  </label>
+                <input id="bloodsugerlevel" type="number">
+            </div>
+        </div>
+        <button id="submit">Submit</button>
+        <div id="editSection" class="hidden">
+            <button id="cancelEdit" onclick="cancelEdit()">
+                  Cancel
+              </button>
+            <button id="updateEntry" onclick="editRow()">
+                  Update
+              </button>
+        </div>
+        <div id="editSection" class="hidden">
+    <button id="cancelEdit">Cancel</button>
+    <button id="updateEntry">Update</button>
+</div>
+
+<div class="summary-box">
+    <h3>7-Day Averages</h3>
+    <div id="OverallAverage">
+        <p>Water: <span id="avgWater">0 ml</span></p>
+        <p>Exercise: <span id="avgExercise">0 min</span></p>
+        <p>Blood Sugar: <span id="avgBloodSugar">0 mg/dL</span></p>
+    </div>
+</div>
+
+<!-- index.html (Inside <div id="mainApp">) -->
+
+<div id="chartDashboard" class="dashboard-section">
+    <h2>Progress Dashboard</h2>
+    <div class="charts-container">
+        
+        <!-- 🛑 NEW: Blood Sugar Line Chart Canvas 🛑 -->
+        <div class="chart-box">
+            <h3>Blood Sugar Trend (Last 7 Entries)</h3>
+            <canvas id="bloodSugarChart"></canvas>
+        </div>
+        
+        <!-- 🛑 NEW: Water & Exercise Bar Chart Canvas 🛑 -->
+        <div class="chart-box">
+            <h3>Water & Exercise Goals</h3>
+            <canvas id="goalComparisonChart"></canvas>
+        </div>
+        
+    </div>
+</div>
+
+<!-- ... existing Summary/Feedback/Data Entry sections ... -->
+
+<div id="healthFeedback" class="feedback-box">
+    <h3>Health Goals Summary</h3>
+    <p id="waterFeedback">Water: Keep tracking your intake!</p>
+    <p id="exerciseFeedback">Exercise: Log your minutes!</p>
+    <p id="bloodSugarFeedback">Blood Sugar: Stay informed!</p>
+</div>
+
+<div id="header-controls">
+    <button id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-sun"></i> 
+    </button>
+    </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Water Intake <br> (in ml)</th>
+                    <th>Exercise Duration <br> (in min)</th>
+                    <th>Blood Sugar Level <br> (in mg/dL)</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="outputBody">
+            </tbody>
+        </table>
+    </div>
+    <!-- Font Awesome JS CDN -->
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"
+            integrity=
+"sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+      </script>
+      <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+<script>
+        var app;
+        var auth;
+        var db; 
+
+        // 🛑 ENSURE YOUR REAL KEYS ARE HERE 🛑
+        const firebaseConfig = {
+            apiKey: "AIzaSyCoGTWj2ldZKN8EvzKXdlEjOlx-CJxgkvo",
+            authDomain: "vitality-tracker-23ce6.firebaseapp.com",
+            projectId: "vitality-tracker-23ce6",
+            storageBucket: "vitality-tracker-23ce6.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        
+        // These lines define the global variables used in script.js
+        app = firebase.initializeApp(firebaseConfig);
+        auth = app.auth();     
+        db = app.firestore();  
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
