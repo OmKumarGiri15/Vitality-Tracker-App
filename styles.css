@@ -664,3 +664,69 @@ table tr:nth-child(odd) {
     margin-bottom: 10px;
     color: var(--color-text-secondary);
 }
+
+/* =================================================================
+   RESPONSIVE DESIGN: MOBILE OPTIMIZATION
+   ================================================================= */
+
+/* Target devices smaller than 768px wide (typical tablets/phones) */
+@media (max-width: 768px) {
+    
+    /* 1. CHART LAYOUT: Stack the charts vertically */
+    .charts-container {
+        flex-direction: column; /* Stacks the two chart boxes */
+    }
+    
+    /* Make the chart boxes take full width and shrink the height slightly */
+    .chart-box {
+        flex: 1 1 100%; /* Take up the full width */
+        min-width: unset; /* Remove minimum width constraint */
+        height: 350px; /* Slightly shorter height for mobile viewing */
+    }
+
+    /* 2. TABLE LAYOUT: Reduce padding and wrap text */
+    
+    /* Reduce padding in general containers */
+    body {
+        padding: 10px;
+    }
+    
+    /* Make input and button areas fill their container better */
+    .data-entry-form input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* 3. SCROLLABLE TABLE (CRITICAL FOR WIDE TABLES) */
+    /* Wrap the entire table in a container and make it horizontally scrollable */
+    /* You may need to add a <div> around your table in index.html for this to work */
+    
+    /* OPTION A: Table Scroll Container (If your table is too wide) */
+    /* Add <div class="table-container"> around your <table> in index.html */
+    .table-container { 
+        overflow-x: auto; /* Adds horizontal scroll bar */
+        -webkit-overflow-scrolling: touch; /* Better touch scrolling on iOS */
+    }
+    
+    /* OPTION B: Shrink table columns */
+    table th, table td {
+        /* Reduce padding to save horizontal space */
+        padding: 8px 3px; 
+        font-size: 0.85rem; 
+    }
+    
+    /* 4. HIDE LESS IMPORTANT COLUMNS (Advanced Technique) */
+    /* You can hide the Edit/Delete column headers on small screens to save space */
+    
+    table th:nth-child(5), 
+    table td:nth-child(5),
+    table th:nth-child(6), 
+    table td:nth-child(6) {
+      display: none; 
+    }
+
+}
+
+
+    
+
