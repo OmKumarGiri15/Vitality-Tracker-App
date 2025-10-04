@@ -432,14 +432,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // =================================================================
 
     // --- Data Submission Listeners ---
-    submitButton.addEventListener("click", () => {
-        const w = wInput.value.trim();
-        const e = eInput.value.trim();
-        const b = bInput.value.trim();
+    // Event listener correctly calls function with values
+submitButton.addEventListener("click", () => {
+    const w = wInput.value.trim();
+    const e = eInput.value.trim();
+    const b = bInput.value.trim();
 
-        if (!validateInput(w, e, b)) return;
-        addNewEntry(w, e, b);
-    });
+    if (!validateInput(w, e, b)) return;
+    addNewEntry(w, e, b); // <--- It passes the values here.
+});
 
     updateEntryButton.addEventListener("click", updateEntry);
     cancelEditButton.addEventListener("click", () => {
