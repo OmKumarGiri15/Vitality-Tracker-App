@@ -31,4 +31,6 @@ Authentication : Firebase Authentication	Secure user registration and session ma
 Database : Firestore (NoSQL)	Scalable, cloud-hosted storage for user health data.
 Deployment : Git, GitHub, Netlify	Version control and Continuous Deployment (CI/CD).
 
+https://vitality-tracker-app.netlify.app/
+
 
